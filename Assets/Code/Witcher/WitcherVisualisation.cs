@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WitcherVisualisation : MonoBehaviour {
-    public RectTransform knob;
+    public RectTransform bar;
+    public RectTransform point;
     public WitcherLogic logic;
 		
 	void FixedUpdate () {
@@ -13,7 +14,8 @@ public class WitcherVisualisation : MonoBehaviour {
 	}
 
     private float GetKnobPosition() {
-        return knob.anchoredPosition.x;
+        point.anchoredPosition = new Vector2(GetMousePosition() * Screen.width - Screen.width / 2, point.anchoredPosition.y);
+        return bar.anchoredPosition.x / Screen.width + 0.5f;
     }
 
     private float GetMousePosition() {
@@ -21,6 +23,6 @@ public class WitcherVisualisation : MonoBehaviour {
     }
 
     private void SetKnobPosition(float newPosition) {
-        knob.anchoredPosition = new Vector2(newPosition*Screen.width - Screen.width/2, knob.anchoredPosition.y);
+        bar.anchoredPosition = new Vector2(newPosition*Screen.width - Screen.width/2, bar.anchoredPosition.y);
     }
 }
