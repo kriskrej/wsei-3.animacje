@@ -7,16 +7,20 @@ public class WitcherLogic : MonoBehaviour {
 
     void Update() {
         ui.PointX = ui.MouseX;
-        ui.BarX = ui.MouseX;
-        ui.BarWidth = ui.MouseX;
-        Debug.Log(ui.BarWidth + "=" + (ui.MouseX) +"\n");
-        //ui.BarWidth = 1 - ui.MouseX + 0.1f;
+        if (IsMouseOverBar()) {
+            ui.BarX++;
+        }
+        else {
+            ui.BarX--;
+        }
+        //ui.BarX = ui.MouseX;
+        ui.BarWidth = (1000-ui.BarX)/4;
 
         
     }
 
     bool IsMouseOverBar() {
-        throw new System.NotImplementedException();
+        return Mathf.Abs(ui.BarX - ui.MouseX) < ui.BarWidth / 2;
     }
 
 
